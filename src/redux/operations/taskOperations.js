@@ -17,7 +17,9 @@ const options = {
 export const getContactsOperation = () => async (dispatch) => {
   try {
     dispatch(loaderOn());
-    const result = await axios.get(`http://localhost:5000/contacts`);
+    const result = await axios.get(
+      `https://goit-phonebook-api.herokuapp.com/contacts`
+    );
     console.dir(result);
     dispatch(setContact(result.data));
   } catch (error) {
@@ -30,7 +32,11 @@ export const getContactsOperation = () => async (dispatch) => {
 export const postContactsOperations = (contact) => async (dispatch) => {
   try {
     dispatch(loaderOn());
-    await axios.post(`http://localhost:5000/contacts`, contact, options);
+    await axios.post(
+      `https://goit-phonebook-api.herokuapp.com/contacts`,
+      contact,
+      options
+    );
   } catch (error) {
     dispatch(setError("Оууууу, щось сталось =D"));
   } finally {
@@ -38,10 +44,12 @@ export const postContactsOperations = (contact) => async (dispatch) => {
   }
 };
 
-export const deleteContactOperation = (id) => async (dispatch) => {
+export const deleteContactOperation = (contactId) => async (dispatch) => {
   try {
-    await axios.delete(`http://localhost:5000/contacts/${id}`);
-    dispatch(deleteContact(id));
+    await axios.delete(
+      `https://goit-phonebook-api.herokuapp.com/contacts/${contactId}`
+    );
+    dispatch(deleteContact(contactId));
   } catch (error) {
     dispatch(setError("Оууууу, щось сталось =D"));
   } finally {
