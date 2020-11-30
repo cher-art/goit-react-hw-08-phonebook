@@ -1,0 +1,193 @@
+.phoneBook{
+}
+
+.title{
+  text-align: center;
+}
+
+
+.findTitle{
+  padding-left: 40px;
+}
+
+.logo-appear {
+  transform: translateX(-50%);
+}
+
+.logo-appear-active{
+  transform: translateX(0%);
+  transition: transform 500ms linear;
+}
+.form-appear{
+  transform: translateX(250%);
+}
+
+.form-appear-active{
+  transform: translateX(0);
+  transition: transform 500ms linear;
+}
+
+.contactTitle-enter {
+  opacity: 0;
+}
+
+.contactTitle-enter-active {
+  opacity: 1;
+  transition: opacity 500ms;
+}
+.contactTitle-exit {
+  opacity: 1;
+}
+
+.contactTitle-exit-active{
+  opacity: 0;
+  transition: opacity 500ms linear ;
+}
+
+
+.notFound-enter {
+  opacity: 0;
+}
+.notFound-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.notFound-exit {
+  opacity: 1;
+}
+.notFound-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.alert__Box {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  margin-left: -185px;
+  background-color: white;
+  color: black;
+  padding: 10px;
+  text-align: center;
+  width: 350px;
+  transform: translateY(50%);
+  border: 1px solid rgb(180, 14, 14);
+  border-radius: 20px;
+}
+
+.alertButton {
+  padding: 5px 75px;
+  border: none;
+  border-radius: 10px;
+}
+
+.alert__Box-enter-active {
+  animation: alert 800ms ease-in alternate-reverse;
+}
+
+@keyframes alert {
+  0% {
+    transform: translateY(50%);
+  }
+  30% {
+    opacity: 0.7;
+    transform: translateY(50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+}
+
+.alert__Box-exit-active {
+  animation: alertBack 800ms ease-in-out;
+}
+
+@keyframes alertBack {
+  0% {
+    transform: translateY(50%);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(50%);
+  }
+  100% {
+    opacity: 0.3;
+    transform: translateY(10%);
+  }
+}
+
+.modal-enter {
+  opacity: 0;
+}
+.modal-enter-active {
+  opacity: 1;
+  transition: 500ms ease-in-out;
+}
+.modal-exit {
+  opacity: 1;
+}
+.modal-exit-active {
+  opacity: 0;
+  transition: 350ms ease-in-out;
+}
+
+.list {
+  list-style: none;
+  width: 500px;
+  padding: 0px;
+  padding-left: 40px;
+}
+.item {
+  background-color: #aaa;
+  padding: 20px;
+  color: #000;
+  margin-bottom: 20px;
+}
+.item:last-child {
+  margin-bottom: 0;
+}
+
+.list__item-enter-active {
+  animation: task 800ms ease-in alternate-reverse;
+}
+.list__item-exit-active {
+  animation-duration: 800ms;
+  animation-name: hinge;
+}
+@keyframes task {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    opacity: 0.7;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+}
+@keyframes hinge {
+  0% {
+    transform-origin: top left;
+    animation-timing-function: ease-in-out;
+  }
+  20%,
+  60% {
+    transform: rotate3d(0, 0, 1, 80deg);
+    transform-origin: top left;
+    animation-timing-function: ease-in-out;
+  }
+  40%,
+  80% {
+    transform: rotate3d(0, 0, 1, 60deg);
+    transform-origin: top left;
+    animation-timing-function: ease-in-out;
+    opacity: 1;
+  }
+  to {
+    transform: translate3d(0, 700px, 0);
+    opacity: 0;
+  }
+}

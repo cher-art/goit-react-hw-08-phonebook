@@ -1,0 +1,23 @@
+.title{
+  text-align: center;
+}
+
+.loginForm{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+}
+
+.loginForm input {
+  display: block;
+  margin-bottom: 30px;
+  padding: 10px;
+  font-style: 20px;
+}
+
+.loginForm button {
+  padding: 10px;
+  font-size: 20px;
+}

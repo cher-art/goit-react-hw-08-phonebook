@@ -1,0 +1,48 @@
+.mainHeader{
+  /* text-align: center; */
+  
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.mainNav{
+  display: flex;
+  justify-content: space-between;
+}
+.singIn{
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
+.home{
+  color: black;
+  text-decoration: none;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.login{
+  color: black;
+  padding-left: 20px;
+  text-decoration: none;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.registration{
+  color: black;
+  text-decoration: none;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.logoutButton{
+  background-color: black;
+  color: white;
+  border-style: none;
+  position: absolute;
+  top: 76px;
+  right: 168px;
+}
