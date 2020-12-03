@@ -27,7 +27,7 @@ const Header = () => {
     <header className={styles.mainHeader}>
       <nav className={styles.mainNav}>
         <NavLink className={styles.home} to={navigation.home}>
-          Home
+          MyContacts
         </NavLink>
         {token && (
           <button onClick={logout} className={styles.logoutButton}>

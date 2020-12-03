@@ -17,6 +17,7 @@ const Form = () => {
   const [data, setData] = useState(initialState);
   const { name, number } = data;
   const contacts = useSelector((state) => state.contacts);
+  const token = useSelector((state) => state.token);
   const dispatch = useDispatch();
 
   const onHandleChange = ({ target }) => {
@@ -35,7 +36,7 @@ const Form = () => {
     if (contacts.some((contact) => contact.name === singleContact.name)) {
       dispatch(alertOpen());
     } else {
-      dispatch(postContactsOperations(singleContact));
+      dispatch(postContactsOperations(singleContact, token));
       dispatch(addContact(singleContact));
       setData(initialState);
     }

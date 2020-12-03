@@ -3,7 +3,6 @@ import { setError, resetError } from "../action/errorAction";
 import { loaderOn, loaderOff } from "../action/loaderAction";
 import { resetToken, setToken } from "../action/tokenAction";
 
-console.log(resetToken());
 export const registeredOperation = (userData) => async (dispatch) => {
   try {
     dispatch(loaderOn());
@@ -27,7 +26,7 @@ export const loginOperation = (userData) => async (dispatch) => {
       "https://goit-phonebook-api.herokuapp.com/users/login",
       userData
     );
-    console.log(result);
+    // console.log(result);
     dispatch(setToken(result.data.token));
   } catch (error) {
     dispatch(setError("bad request!"));

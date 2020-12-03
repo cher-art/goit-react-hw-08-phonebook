@@ -3,7 +3,10 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { alertClose } from "../../redux/action/alertAction";
 import { setContactLocalStorage } from "../../redux/action/contactAction";
 import { useDispatch, useSelector } from "react-redux";
-import { getContactsOperation } from "../../redux/operations/taskOperations";
+import {
+  getContactsOperation,
+  postContactsOperations,
+} from "../../redux/operations/taskOperations";
 import { v4 as uuidv4 } from "uuid";
 import Form from "../Form/Form";
 import ContactList from "../ContactList/ContactList";
@@ -14,6 +17,7 @@ const PhoneBook = () => {
   const contacts = useSelector((state) => state.contacts);
   const filter = useSelector((state) => state.filter);
   const alert = useSelector((state) => state.isAlert);
+  const token = useSelector((state) => state.token);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,7 +25,8 @@ const PhoneBook = () => {
     const persistedTasks = localStorage.getItem("contacts");
     const parseContact = JSON.parse(persistedTasks);
     if (persistedTasks) {
-      dispatch(setContactLocalStorage(parseContact));
+      dispatch(setContactLocalStorage(parseContact, token));
+      dispatch(postContactsOperations(token));
     }
   }, [dispatch]);
 

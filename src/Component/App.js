@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 import { navigation } from "./contstant";
 import Header from "./Header/Header";
-import Home from "./Containers/Home/Home";
+import Contacts from "./Containers/Contacts/Contacts";
 import Login from "./Containers/Login/Login";
 import Registration from "./Containers/Registration/Registration";
 import "./App.css";
@@ -24,7 +24,7 @@ function App() {
       <Header />
       <Switch>
         {token ? (
-          <Route exact path={navigation.home} component={Home} />
+          <Route exact path={navigation.home} component={Contacts} />
         ) : (
           <Route path={navigation.login} component={Login} />
         )}

@@ -7,20 +7,21 @@ import {
   deleteContact,
   setContact,
 } from "../action/contactAction";
+import { resetToken, setToken } from "../action/tokenAction";
 
-const options = {
+const options = (token) =>  ({
   header: {
-    "Content-type": "application/json",
+    Authorization: `Bearer ${token}`,
   },
-};
+});
 
-export const getContactsOperation = () => async (dispatch) => {
+export const getContactsOperation = (token) => async (dispatch) => {
   try {
     dispatch(loaderOn());
     const result = await axios.get(
-      `https://goit-phonebook-api.herokuapp.com/contacts`
+      `https://goit-phonebook-api.herokuapp.com/contacts`, options(token)
     );
-    console.dir(result);
+    console.log(result);
     dispatch(setContact(result.data));
   } catch (error) {
     dispatch(setError("Оууууу, щось сталось =D"));
@@ -29,14 +30,14 @@ export const getContactsOperation = () => async (dispatch) => {
   }
 };
 
-export const postContactsOperations = (contact) => async (dispatch) => {
+export const postContactsOperations = (contact, token) => async (dispatch) => {
   try {
     dispatch(loaderOn());
-    await axios.post(
+    const result = await axios.post(
       `https://goit-phonebook-api.herokuapp.com/contacts`,
-      contact,
-      options
+      contact, options(token)
     );
+    dispatch(setContact(result.data));
   } catch (error) {
     dispatch(setError("Оууууу, щось сталось =D"));
   } finally {
@@ -44,10 +45,10 @@ export const postContactsOperations = (contact) => async (dispatch) => {
   }
 };
 
-export const deleteContactOperation = (contactId) => async (dispatch) => {
+export const deleteContactOperation = (contactId, token ) => async (dispatch) => {
   try {
     await axios.delete(
-      `https://goit-phonebook-api.herokuapp.com/contacts/${contactId}`
+      `https://goit-phonebook-api.herokuapp.com/contacts/${contactId}`, options(token)
     );
     dispatch(deleteContact(contactId));
   } catch (error) {
