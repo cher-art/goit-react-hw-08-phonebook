@@ -1,17 +1,22 @@
 import React from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteContact } from "../../redux/action/contactAction";
-import { deleteContactOperation } from "../../redux/operations/taskOperations";
+import {
+  deleteContactOperation,
+  getContactsOperation,
+} from "../../redux/operations/taskOperations";
 import styles from "./ContactList.module.css";
 import "./ContactList.css";
 
 const ContactList = ({ name, number, id }) => {
+  const token = useSelector((state) => state.token);
   const dispatch = useDispatch();
   const deleteItem = () => {
-    dispatch(deleteContactOperation(id));
-    dispatch(deleteContact(id));
-  };
+    dispatch(deleteContactOperation(id, token));
+    // dispatch(getContactsOperation(token));
+    // dispatch(deleteContact(id));
+  };;
   return (
     <li className={styles.contactList} key={id}>
       {name}: {number}
@@ -20,6 +25,6 @@ const ContactList = ({ name, number, id }) => {
       </button>
     </li>
   );
-};
+};;;
 
 export default ContactList;

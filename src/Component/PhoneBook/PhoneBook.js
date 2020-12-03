@@ -20,28 +20,18 @@ const PhoneBook = () => {
   const token = useSelector((state) => state.token);
   const dispatch = useDispatch();
 
+  console.log(contacts);
+
   useEffect(() => {
-    dispatch(getContactsOperation());
-    const persistedTasks = localStorage.getItem("contacts");
-    const parseContact = JSON.parse(persistedTasks);
-    if (persistedTasks) {
-      dispatch(setContactLocalStorage(parseContact, token));
-      dispatch(postContactsOperations(token));
-    }
+    dispatch(getContactsOperation(token));
   }, [dispatch]);
 
-  useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-  }, [contacts]);
-
   const filterContacts = () => {
-    const filterArr = contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
-    if (filterArr.length >= 1) {
+    if (contacts.length >= 1 ) {
+      const filterArr = contacts.filter((contact) =>
+        contact.name.toLowerCase().includes(filter.toLowerCase())
+      );
       return filterArr;
-    } else {
-      return contacts;
     }
   };
 
@@ -88,7 +78,7 @@ const PhoneBook = () => {
         <Form />
       </CSSTransition>
       <CSSTransition
-        in={filterContacts().length >= 1}
+        // in={filterContacts().length >= 1}
         timeout={250}
         classNames="contactTitle"
         unmountOnExit
@@ -96,7 +86,7 @@ const PhoneBook = () => {
         <h2 className="findTitle">Find contacts</h2>
       </CSSTransition>
       <CSSTransition
-        in={filterContacts().length >= 1}
+        // in={filterContacts().length >= 1}
         timeout={250}
         classNames="contactTitle"
         unmountOnExit
@@ -104,11 +94,11 @@ const PhoneBook = () => {
         <Filter />
       </CSSTransition>
       <TransitionGroup component="ul" className="list">
-        {filterContacts().map((contact) => (
-          <CSSTransition classNames="list__item" timeout={800}>
-            <ContactList {...contact} />
-          </CSSTransition>
-        ))}
+        {contacts.length >= 1 && contacts.map((contact) => (
+              <CSSTransition classNames="list__item" timeout={800}>
+                <ContactList {...contact} />
+              </CSSTransition>
+            ))}
       </TransitionGroup>
     </div>
   );
